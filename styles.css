@@ -1,0 +1,205 @@
+/*
+VIB colors: 
+    vib_navy <- '#1b2944'
+    vib_orange <- '#ec672a'
+    vib_teal <- '#3abbba'
+    vib_purple <- '#5b2a82'
+*/
+
+/*  NAVIGATION BAR HEADER */
+
+/* bar itself */ 
+.navbar {
+  background-color: #1b2944;
+  font-family: Arial;
+  font-size: 13px;
+  color: #FFFFFF;
+  padding: 1em 
+}
+
+/* title */ 
+.navbar-default .navbar-brand {
+  color: #ec672a;
+  font-weight: bold;
+  font-size: 25px;
+  pointer-events:none 
+}
+
+/* tabs on focus / hover */
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  color: #FFFFFF ;
+  font-weight: bold 
+}
+
+/* selected tab */
+.navbar-default li.active>a {
+  color: #FFFFFF !important; /* using !important to override other settings  */
+  background-color: #1b2944 !important; /* darkblue to hide ghost tab, teal in rnaseq app */
+  font-weight: bold;
+  font-size: 1.25em
+}
+
+/* FOOTER IMAGE */
+
+.well img {
+  float:left; 
+  margin:25px; 
+  height:100px 
+}
+
+img.footer {
+  float:right; 
+  margin:25px; 
+  height:100px 
+}
+
+
+/* NAVIGATION TABS MAIN PANEL */
+
+/* inactive tabs */
+.nav-tabs>li>a{
+  color: #1b2944;
+  font-weight: bold
+}
+
+/* selected tab */  
+.nav-tabs>li.active>a{
+  color: #5b2a82;
+  font-weight: bold;
+  font-size: 1.25em
+}
+
+/* text on selected tab on focus/hover, without this rule the text is grey */
+.nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  color: #5b2a82;
+  font-weight: bold;
+  font-size: 1.25em
+}
+
+
+
+/* WIDGETS */
+
+
+/* select input title */
+.control-label {
+  color: #1b2944;
+}
+
+/* action button */
+button {
+  background-color: #f0f0f0 !important;
+  font-style: italic;
+  color: #1b2944;
+  margin-bottom: 1em !important
+}
+
+/* download button */
+.btn .btn-default .shiny-download-link  .shiny-bound-output {
+  background-color: #f0f0f0 !important;
+  font-style: italic;
+  color: #1b2944;
+  margin-bottom: 1em !important
+}
+
+
+
+/* text */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1b2944; /* dark blue */
+  font-weight: bold
+}
+
+/* title panel */
+h2 {
+  text-decoration: underline;
+  text-decoration-color: #ec672a /* orange line */
+}
+
+h3{
+  border-bottom: 2px solid #ec672a /* orange line */
+}
+
+p, .shiny-text-output {
+  color: #1b2944; /* dark blue */
+  font-weight: bold
+}
+
+/* extra explanatory line */
+p.descr, a.link {
+  font-style: italic;
+  font-weight: normal
+}
+p.descr {
+  color: #1b2944; /* dark blue */
+}
+
+p.warning {
+  color: #ec672a; /* orange */
+}
+
+/*
+p.em {
+ border-bottom: 1px solid #ec672a
+}
+*/
+
+/* hyperlink */
+a.link {
+  color: #5b2a82; /* purple */
+}
+
+/* DIV's */
+
+/* make input div's same size as parent, max width defined by shiny itself as 100% of window */
+.shiny-input-container {
+  width: inherit !important
+}
+
+select {
+  width: inherit !important
+}
+/* above doesn't work for fluidRow columns */
+/* does nothing */
+.form-group .shiny-input-container {
+  width: inherit !important
+}
+
+/* does nothing */
+.form-control .selectize-control {
+  width: inherit !important
+}
+
+.form-group .shiny-input-container {
+  width: inherit !important
+}
+
+.selectize-control .form-control .single{
+  width: inherit !important
+}
+
+
+/* Silent error validation */
+
+.shiny-output-error-validation{
+  color: #3abbba;
+  font-weight: bold;
+  margin-bottom: 1em 
+}
+
+/* highlights using span in purple , class em (emphasis) */
+.em {
+  color: #5b2a82;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-decoration: underline
+}
+
+
+/* clear metadata button */
+#clear_meta {
+	float: right
+}
+
+

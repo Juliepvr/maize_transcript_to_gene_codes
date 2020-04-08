@@ -1,0 +1,12 @@
+name: transcript_to_gene_code_Maize
+title: transcript_to_gene_code_Maize
+username:
+account: jupev
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2074270
+bundleId: 2985512
+url: https://juliepvr.shinyapps.io/transcript_to_gene_code_Maize/
+when: 1586332111.77227
+asMultiple: FALSE
+asStatic: FALSE
