@@ -1,5 +1,6 @@
 library(shiny)
 library(utils)
+library(readxl)
 
 ################################################################################
 #### Functions & constants
@@ -61,16 +62,29 @@ ui <- fluidPage(
       
       # Horizontal line ----
       tags$hr(),
-      
-      # Input: Select separator ----
-      radioButtons("sep", "Separator",
-                   choices = c(Comma = ",",
-                               Semicolon = ";",
-                               Tab = "\t"),
-                   selected = ","),
-      
-      # Input: Does file have header ----
-      checkboxInput("header", "Header", FALSE),
+      radioButtons("filetype", "File type",
+                   choices = c("Excel" = 0,
+                               "CSV or plain text" = 1),
+                   selected = 1),
+      # IF CSV Input: Select separator ----
+      conditionalPanel(
+        condition = "input.filetype == 1",
+        radioButtons("sep", "Separator",
+                     choices = c(Comma = ",",
+                                 Semicolon = ";",
+                                 Tab = "\t"),
+                     selected = ","),
+        
+        # Input: Select quotes ----
+        radioButtons("quote", "Quote",
+                     choices = c(None = "",
+                                 "Double Quote" = '"',
+                                 "Single Quote" = "'"),
+                     selected = '"'),
+        
+        # Input: Does file have header ----
+        checkboxInput("header", "Header", FALSE)
+        ), # end if CSV
 
       # Horizontal line ----
       tags$hr(),
@@ -81,12 +95,7 @@ ui <- fluidPage(
                                All = "all"),
                    selected = "head"),
       
-      # Input: Select quotes ----
-      radioButtons("quote", "Quote",
-                   choices = c(None = "",
-                               "Double Quote" = '"',
-                               "Single Quote" = "'"),
-                   selected = '"'),
+      
       tags$img(src=vib_logo)
 
     ),
@@ -119,10 +128,15 @@ server <- function(input, output, session) {
     # having a comma separator causes `read.csv` to error
     tryCatch(
       {
+        if(input$filetype == 1){
         df <- read.table(input$file1$datapath,
                        header = input$header,
                        sep = input$sep,
                        quote = input$quote)
+        } else {
+          df <- read_excel(input$file1$datapath)
+          df <- as.data.frame(df)
+        }
       },
       error = function(e) {
         # return a safeError if a parsing error occurs
