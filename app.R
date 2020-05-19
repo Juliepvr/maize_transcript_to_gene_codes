@@ -1,7 +1,7 @@
 library(shiny)
 library(utils)
 library(readxl)
-
+library(xlsx)
 ################################################################################
 #### Functions & constants
 ################################################################################
@@ -20,7 +20,10 @@ transcript_to_gene <- function(transcript){
   # extract first part of all gene IDs starting with G
   # e.g. GRMZM2G000014_T01 to GRMZM2G000014
   for (i in 1:length(gene)){
-    if (substr(gene[i], 0, 1) == "G") {
+    if (is.na(gene[i]) || is.null(gene[i])){
+      # next
+      gene[i] <- ""
+    } else if (substr(gene[i], 0, 1) == "G") {
       # split at underscore, extract first part of split
       gene[i] <- strsplit(gene[i], "_" )[[1]][1]
     }
@@ -171,10 +174,15 @@ server <- function(input, output, session) {
   # download SQL lines
   output$download_button <- downloadHandler(
     filename = function(){
-      "gene_codes"
+      paste0("gene_codes_", input$file1$name)
     },
     content = function(file) {
-      writeLines(gene_codes(), file)
+      if(input$filetype == 1){
+        write.csv(gene_codes(), file, row.names = FALSE)
+      } else {
+        write.xlsx2(gene_codes(), file, sheetName = "Sheet1",
+                    col.names = TRUE, row.names = FALSE, append = FALSE)
+      }
     }
   )
   
